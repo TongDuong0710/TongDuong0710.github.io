@@ -27,8 +27,6 @@
             <img src="./img/img8.jpg" alt="">
 
             <p>Meo Meo xinh gái</p>
-
-
         </div>
         <div id="ground"></div>
     </div>
@@ -37,7 +35,31 @@
     <div id="canva">
         <canvas id="canvas"></canvas>
     </div>
-    <audio src="./music.mp3" autoplay loop></audio>
+    <audio id="background-audio" src="./music.mp3" loop></audio>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById('background-audio');
+
+            function playAudio() {
+                audio.play().then(function() {
+                    console.log('Audio is playing');
+                }).catch(function(error) {
+                    console.log('Audio play failed:', error);
+                });
+
+                // Remove the event listener after the first interaction
+                document.removeEventListener('click', playAudio);
+                document.removeEventListener('keydown', playAudio);
+                document.removeEventListener('touchstart', playAudio);
+            }
+
+            // Add event listeners for various user interactions
+            document.addEventListener('click', playAudio);
+            document.addEventListener('keydown', playAudio);
+            document.addEventListener('touchstart', playAudio);
+        });
+    </script>
     <script src="main.js"></script>
 </body>
 
